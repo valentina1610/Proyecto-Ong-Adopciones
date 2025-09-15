@@ -35,21 +35,21 @@ public class VentanaFormulario extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1), "Yuli",  new Integer(1), "Perro", "Simon"},
-                { new Integer(2), "Valentina",  new Integer(2), "Gato", "Tsukki"},
-                { new Integer(3), "Camila",  new Integer(3), "Gato", "Zuko"},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                { new Integer(1),  new Integer(1), "Yuli",  new Integer(1), "Perro", "Simon", null},
+                { new Integer(2),  new Integer(2), "Valentina",  new Integer(2), "Gato", "Tsukki", null},
+                { new Integer(3),  new Integer(3), "Camila",  new Integer(3), "Gato", "Zuko", null},
+                { new Integer(4),  new Integer(2), "Valentina",  new Integer(4), "Gato", "Fruti", null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "IDAdoptantes", "NombreAdoptante", "IDMascota", "Tipo", "NombreMascota"
+                "IDFormulario", "IDAdoptantes", "NombreAdoptante", "IDMascota", "Especie", "NombreMascota", "Fecha de adopcion"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -67,16 +67,16 @@ public class VentanaFormulario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 22, Short.MAX_VALUE)))
+                        .addGap(0, 337, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
