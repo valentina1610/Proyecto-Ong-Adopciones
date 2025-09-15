@@ -4,21 +4,26 @@ public class Mascota {
     private int idMascota; //PK
     private String nombre;
     private String tipo;
-    private String color;
+    private String raza;
+    private String sexo;
     private int edad;
     private String estado; // disponible o adoptado
     
-    public Mascota(int idMascota, String nombre, String tipo, String color, int edad, String estado) {
+    public Mascota(int idMascota, String nombre, String tipo, String raza, int edad, String estado, String sexo) {
         this.idMascota = idMascota;
         this.nombre = nombre;
         this.tipo = tipo;
-        this.color = color;
+        this.raza = raza;
         this.edad = edad;
         this.estado = estado;
+        this.sexo = sexo;
     }
     // Getters y Setters
     public int getIdMascota() { return idMascota; }
     public void setIdMascota(int idMascota) { this.idMascota = idMascota; }
+    
+    public String getSexo() { return sexo; }
+    public void setSexo(String sexo) { this.sexo = sexo; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
@@ -26,8 +31,8 @@ public class Mascota {
     public String getTipo() { return tipo; }
     public void setTipo(String tipo) { this.tipo = tipo; }
 
-    public String getColor() { return color; }
-    public void setColor(String color) { this.color = color; }
+    public String getRaza() { return raza; }
+    public void setRaza(String raza) { this.raza = raza; }
 
     public int getEdad() { return edad; }
     public void setEdad(int edad) { this.edad = edad; }
@@ -37,7 +42,7 @@ public class Mascota {
     
     @Override
     public String toString() {
-        return idMascota + " - " + nombre + " (" + tipo + ", " + color + ", " + edad + " años) Estado: " + estado;
+        return idMascota + " - " + nombre + " (" + tipo + ", " + raza + ", " + edad + " años) Estado: " + estado;
     }
     
 }
