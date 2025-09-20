@@ -29,8 +29,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        escritorio = new javax.swing.JDesktopPane();
+        jButton1 = new javax.swing.JButton();
+        menu = new javax.swing.JMenuBar();
         jMenuAdoptante = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuMascota = new javax.swing.JMenu();
         jMenuFormulario = new javax.swing.JMenu();
 
@@ -42,13 +45,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("ONG de Adopciones VYC");
 
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 355, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 181, Short.MAX_VALUE)
+        );
+
+        jButton1.setText("jButton1");
+
         jMenuAdoptante.setText("Agregar Adoptante");
         jMenuAdoptante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuAdoptanteActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenuAdoptante);
+
+        jMenuItem1.setText("Agregar Adoptante");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuAdoptante.add(jMenuItem1);
+
+        menu.add(jMenuAdoptante);
 
         jMenuMascota.setText("Agregar Mascota");
         jMenuMascota.addActionListener(new java.awt.event.ActionListener() {
@@ -56,13 +81,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jMenuMascotaActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenuMascota);
+        menu.add(jMenuMascota);
         jMenuMascota.getAccessibleContext().setAccessibleDescription("");
 
         jMenuFormulario.setText("Ver formularios");
-        jMenuBar1.add(jMenuFormulario);
+        jMenuFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuFormularioActionPerformed(evt);
+            }
+        });
+        menu.add(jMenuFormulario);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,25 +102,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(139, 139, 139)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(124, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdoptanteActionPerformed
-        // TODO add your handling code here:
+        System.out.println("CLICK: jMenuAdoptante");
+        javax.swing.JOptionPane.showMessageDialog(this, "Click detectado");
+        // resto del código...
+        VentanaAdoptante ventanaAdoptante = new VentanaAdoptante();
+        ventanaAdoptante.setVisible(true);
     }//GEN-LAST:event_jMenuAdoptanteActionPerformed
 
     private void jMenuMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMascotaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuMascotaActionPerformed
+
+    private void jMenuFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormularioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuFormularioActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,12 +176,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenuAdoptante;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFormulario;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jMenuMascota;
+    private javax.swing.JMenuBar menu;
     // End of variables declaration//GEN-END:variables
 }
