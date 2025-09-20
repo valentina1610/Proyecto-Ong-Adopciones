@@ -271,7 +271,7 @@
                   <Data value="true"/>
                   <Data value="true"/>
                   <Data value="true"/>
-                  <Data value="null"/>
+                  <Data value="false"/>
                 </Column>
                 <Column editable="true" title="Fecha Ingreso" type="java.lang.String"/>
               </Table>

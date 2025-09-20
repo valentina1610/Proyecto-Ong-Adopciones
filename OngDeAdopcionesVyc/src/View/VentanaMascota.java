@@ -76,7 +76,7 @@ public class VentanaMascota extends javax.swing.JFrame {
                 { new Integer(2), "Tsukki", "Gato", "Carey Gris",  new Integer(5), "Hembra",  new Boolean(true), null},
                 { new Integer(3), "Zuko", "Gato", "Criollo negro",  new Integer(0), "Macho",  new Boolean(true), null},
                 { new Integer(4), "Fruti", "Gato", "Criolla",  new Integer(11), "Hembra",  new Boolean(true), null},
-                { new Integer(5), "Roco", "Perro", "Bulldog Frances",  new Integer(2), "Macho", null, null}
+                { new Integer(5), "Roco", "Perro", "Bulldog Frances",  new Integer(2), "Macho",  new Boolean(false), null}
             },
             new String [] {
                 "MascotaID", "Nombre", "Especie", "Raza", "Edad", "Sexo", "¿Adoptado?", "Fecha Ingreso"
