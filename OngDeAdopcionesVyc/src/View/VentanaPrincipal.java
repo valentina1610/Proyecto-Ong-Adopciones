@@ -33,9 +33,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         jMenuAdoptante = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemAdoptante = new javax.swing.JMenuItem();
         jMenuMascota = new javax.swing.JMenu();
+        jMenuItemMascota = new javax.swing.JMenuItem();
         jMenuFormulario = new javax.swing.JMenu();
+        jMenuItemFormularios = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -65,13 +67,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Agregar Adoptante");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemAdoptante.setText("Agregar Adoptante");
+        jMenuItemAdoptante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemAdoptanteActionPerformed(evt);
             }
         });
-        jMenuAdoptante.add(jMenuItem1);
+        jMenuAdoptante.add(jMenuItemAdoptante);
 
         menu.add(jMenuAdoptante);
 
@@ -81,6 +83,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jMenuMascotaActionPerformed(evt);
             }
         });
+
+        jMenuItemMascota.setText("Agregar mascota");
+        jMenuItemMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMascotaActionPerformed(evt);
+            }
+        });
+        jMenuMascota.add(jMenuItemMascota);
+
         menu.add(jMenuMascota);
         jMenuMascota.getAccessibleContext().setAccessibleDescription("");
 
@@ -90,6 +101,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jMenuFormularioActionPerformed(evt);
             }
         });
+
+        jMenuItemFormularios.setText("Agregar formulario");
+        jMenuItemFormularios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFormulariosActionPerformed(evt);
+            }
+        });
+        jMenuFormulario.add(jMenuItemFormularios);
+
         menu.add(jMenuFormulario);
 
         setJMenuBar(menu);
@@ -121,9 +141,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdoptanteActionPerformed
-        System.out.println("CLICK: jMenuAdoptante");
-        javax.swing.JOptionPane.showMessageDialog(this, "Click detectado");
-        // resto del código...
+
        
     }//GEN-LAST:event_jMenuAdoptanteActionPerformed
 
@@ -135,11 +153,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuFormularioActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         VentanaAdoptante ventanaAdoptante = new VentanaAdoptante();
+    private void jMenuItemAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdoptanteActionPerformed
+        VentanaAdoptante ventanaAdoptante = new VentanaAdoptante();
         ventanaAdoptante.setVisible(true);
-        //this.setContentPane(new mipanel());
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemAdoptanteActionPerformed
+
+    private void jMenuItemMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMascotaActionPerformed
+        VentanaMascota ventanaMascota = new VentanaMascota();
+        ventanaMascota.setVisible(true);
+    }//GEN-LAST:event_jMenuItemMascotaActionPerformed
+
+    private void jMenuItemFormulariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosActionPerformed
+        VentanaFormulario ventanaForm = new VentanaFormulario();
+        ventanaForm.setVisible(true);
+    }//GEN-LAST:event_jMenuItemFormulariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,7 +211,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenuAdoptante;
     private javax.swing.JMenu jMenuFormulario;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemAdoptante;
+    private javax.swing.JMenuItem jMenuItemFormularios;
+    private javax.swing.JMenuItem jMenuItemMascota;
     private javax.swing.JMenu jMenuMascota;
     private javax.swing.JMenuBar menu;
     // End of variables declaration//GEN-END:variables

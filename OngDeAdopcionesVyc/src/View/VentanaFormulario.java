@@ -67,7 +67,7 @@ public class VentanaFormulario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Agregar formulario");
+        jLabel1.setText("Agregar Formulario");
 
         jLabel2.setText("ID Adoptante:");
 

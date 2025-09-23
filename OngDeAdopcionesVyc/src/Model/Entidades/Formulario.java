@@ -1,4 +1,4 @@
-package Model;
+package Model.Entidades;
 
 import java.time.LocalDate;
 
