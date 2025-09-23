@@ -46,6 +46,8 @@ public class VentanaFormulario extends javax.swing.JFrame {
                 { new Integer(2),  new Integer(2), "Valentina",  new Integer(2), "Gato", "Tsukki", null},
                 { new Integer(3),  new Integer(3), "Camila",  new Integer(3), "Gato", "Zuko", null},
                 { new Integer(4),  new Integer(2), "Valentina",  new Integer(4), "Gato", "Fruti", null},
+                { new Integer(5),  new Integer(3), "Karina",  new Integer(7), "Perro", "Iki", null},
+                { new Integer(6),  new Integer(4), "Florencia",  new Integer(8), "Perro", "Milo", null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},

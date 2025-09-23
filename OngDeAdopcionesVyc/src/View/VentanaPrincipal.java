@@ -58,7 +58,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
-        jMenuAdoptante.setText("Agregar Adoptante");
+        jMenuAdoptante.setText("Adoptante");
         jMenuAdoptante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuAdoptanteActionPerformed(evt);
@@ -75,7 +75,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         menu.add(jMenuAdoptante);
 
-        jMenuMascota.setText("Agregar Mascota");
+        jMenuMascota.setText("Mascota");
         jMenuMascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuMascotaActionPerformed(evt);
@@ -84,7 +84,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menu.add(jMenuMascota);
         jMenuMascota.getAccessibleContext().setAccessibleDescription("");
 
-        jMenuFormulario.setText("Ver formularios");
+        jMenuFormulario.setText("Formularios");
         jMenuFormulario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuFormularioActionPerformed(evt);
@@ -114,7 +114,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,8 +124,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.out.println("CLICK: jMenuAdoptante");
         javax.swing.JOptionPane.showMessageDialog(this, "Click detectado");
         // resto del código...
-        VentanaAdoptante ventanaAdoptante = new VentanaAdoptante();
-        ventanaAdoptante.setVisible(true);
+       
     }//GEN-LAST:event_jMenuAdoptanteActionPerformed
 
     private void jMenuMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMascotaActionPerformed
@@ -137,7 +136,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuFormularioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+         VentanaAdoptante ventanaAdoptante = new VentanaAdoptante();
+        ventanaAdoptante.setVisible(true);
+        //this.setContentPane(new mipanel());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

@@ -217,11 +217,14 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="5">
+              <Table columnCount="5" rowCount="8">
                 <Column editable="true" title="IDAdoptante" type="java.lang.Object">
                   <Data value="1"/>
                   <Data value="2"/>
                   <Data value="3"/>
+                  <Data value="4"/>
+                  <Data value="5"/>
+                  <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
@@ -229,6 +232,9 @@
                   <Data value="Yuli"/>
                   <Data value="Valentina"/>
                   <Data value="Camila"/>
+                  <Data value="Karina"/>
+                  <Data value="Florencia"/>
+                  <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
@@ -236,6 +242,9 @@
                   <Data value="1234567"/>
                   <Data value="944859"/>
                   <Data value="583824"/>
+                  <Data value="345656"/>
+                  <Data value="765437"/>
+                  <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
@@ -243,6 +252,9 @@
                   <Data value="yuli@gmail.com"/>
                   <Data value="valen@gmail.com"/>
                   <Data value="cami@gmail.com"/>
+                  <Data value="kari@gmail.com"/>
+                  <Data value="flor@gmail.com"/>
+                  <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
@@ -250,6 +262,9 @@
                   <Data value="Rivadavia 4759"/>
                   <Data value="Independencia 3847"/>
                   <Data value="Colon 7647"/>
+                  <Data value="Dorrego 2434"/>
+                  <Data value="Las heras 1234"/>
+                  <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
