@@ -4,14 +4,14 @@ import java.time.LocalDate;
 
 public class Formulario {
     private int idFormulario; //PK
-    private Mascota idMascota; //FK
-    private Adoptante idAdoptante; //FK
+    private Mascota Mascota; //FK
+    private Adoptante Adoptante; //FK
     private LocalDate fechaAdopcion;
     
-    public Formulario(int idFormulario, Mascota idMascota, Adoptante idAdoptante, LocalDate fechaAdopcion) {
+    public Formulario(int idFormulario, Mascota Mascota, Adoptante Adoptante, LocalDate fechaAdopcion) {
         this.idFormulario = idFormulario;
-        this.idMascota = idMascota;
-        this.idAdoptante = idAdoptante;
+        this.Mascota = Mascota;
+        this.Adoptante = Adoptante;
         this.fechaAdopcion = fechaAdopcion;
     }
      // Getters y Setters
@@ -23,20 +23,20 @@ public class Formulario {
         this.idFormulario = idFormulario;
     }
 
-    public Mascota getIdMascota() {
-        return idMascota;
+    public Mascota getMascota() {
+        return Mascota;
     }
 
-    public void setIdMascota(Mascota idMascota) {
-        this.idMascota = idMascota;
+    public void setMascota(Mascota Mascota) {
+        this.Mascota = Mascota;
     }
 
-    public Adoptante getIdAdoptante() {
-        return idAdoptante;
+    public Adoptante getAdoptante() {
+        return Adoptante;
     }
 
-    public void setIdAdoptante(Adoptante idAdoptante) {
-        this.idAdoptante = idAdoptante;
+    public void setAdoptante(Adoptante Adoptante) {
+        this.Adoptante = Adoptante;
     }
 
     public LocalDate getFechaAdopcion() {
@@ -51,8 +51,8 @@ public class Formulario {
     @Override
     public String toString() {
         return "Formulario " + idFormulario +
-               " - Mascota: " + idMascota.getNombre() +
-               " - Adoptante: " + idAdoptante.getNombre() +
+               " - Mascota: " + Mascota.getNombre() +
+               " - Adoptante: " + Adoptante.getNombre() +
                " - Fecha adopcion: " + fechaAdopcion;
     }
     
