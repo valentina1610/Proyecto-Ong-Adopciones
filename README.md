@@ -77,7 +77,7 @@ Este sistema puede ser implementado o adaptado en:
 
 - Los cambios quedan guardados en la base de datos.
 
-🗺 DIAGRAMAS
+## 🗺 DIAGRAMAS
 
 📌 El proyecto incluye:
 
@@ -86,6 +86,6 @@ Diagrama de Casos de Uso General del sistema:
 
 Diagrama de Secuencia para el proceso de registro de adopción:
 
-
-## OngAdopciones demuestra la aplicación práctica de Programación Orientada a Objetos, MVC y DAO en un proyecto realista.
+## Notas finales
+OngAdopciones demuestra la aplicación práctica de Programación Orientada a Objetos, MVC y DAO en un proyecto realista.
 Fue desarrollado como trabajo práctico integral de Programación Orientada a Objetos, reforzando el aprendizaje de arquitectura, diseño y buenas prácticas en Java.
