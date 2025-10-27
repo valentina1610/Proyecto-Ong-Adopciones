@@ -223,13 +223,15 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="5">
+              <Table columnCount="8" rowCount="7">
                 <Column editable="true" title="MascotaID" type="java.lang.Integer">
                   <Data value="1"/>
                   <Data value="2"/>
                   <Data value="3"/>
                   <Data value="4"/>
                   <Data value="5"/>
+                  <Data value="6"/>
+                  <Data value="7"/>
                 </Column>
                 <Column editable="true" title="Nombre" type="java.lang.String">
                   <Data value="Simon"/>
@@ -237,12 +239,16 @@
                   <Data value="Zuko"/>
                   <Data value="Fruti"/>
                   <Data value="Roco"/>
+                  <Data value="Iki"/>
+                  <Data value="Milo"/>
                 </Column>
                 <Column editable="true" title="Especie" type="java.lang.String">
                   <Data value="Perro"/>
                   <Data value="Gato"/>
                   <Data value="Gato"/>
                   <Data value="Gato"/>
+                  <Data value="Perro"/>
+                  <Data value="Perro"/>
                   <Data value="Perro"/>
                 </Column>
                 <Column editable="true" title="Raza" type="java.lang.String">
@@ -251,6 +257,8 @@
                   <Data value="Criollo negro"/>
                   <Data value="Criolla"/>
                   <Data value="Bulldog Frances"/>
+                  <Data value="Pastor aleman"/>
+                  <Data value="Criollo"/>
                 </Column>
                 <Column editable="true" title="Edad" type="java.lang.Integer">
                   <Data value="9"/>
@@ -258,8 +266,12 @@
                   <Data value="0"/>
                   <Data value="11"/>
                   <Data value="2"/>
+                  <Data value="2"/>
+                  <Data value="2"/>
                 </Column>
                 <Column editable="true" title="Sexo" type="java.lang.String">
+                  <Data value="Macho"/>
+                  <Data value="Hembra"/>
                   <Data value="Macho"/>
                   <Data value="Hembra"/>
                   <Data value="Macho"/>
@@ -271,7 +283,9 @@
                   <Data value="true"/>
                   <Data value="true"/>
                   <Data value="true"/>
-                  <Data value="null"/>
+                  <Data value="false"/>
+                  <Data value="true"/>
+                  <Data value="true"/>
                 </Column>
                 <Column editable="true" title="Fecha Ingreso" type="java.lang.String"/>
               </Table>
