@@ -81,8 +81,11 @@ Este sistema puede ser implementado o adaptado en:
 
 Diagrama de Casos de Uso General del sistema:
 
+![Diagrama de Uso](./Imagenes/DiagramaDeUso.jpeg)
 
 Diagrama de Secuencia para el proceso de registro de adopción:
+
+![Diagrama de Uso](./Imagenes/DiagramaSecuencia.png)
 
 ## Notas finales
 OngAdopciones demuestra la aplicación práctica de Programación Orientada a Objetos, MVC y DAO en un proyecto realista.
