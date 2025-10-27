@@ -12,7 +12,7 @@ El objetivo es implementar un sistema en **Java** siguiendo la arquitectura **MV
 ## 🚀 Ejecución
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/usuario/repositorio.git
+   git clone https://github.com/valentina1610/Proyecto-Ong-Adopciones.git
 
 
 ## 📌 ¿Qué hace el programa?
