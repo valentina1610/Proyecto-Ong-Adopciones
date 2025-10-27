@@ -154,17 +154,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuFormularioActionPerformed
 
     private void jMenuItemAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdoptanteActionPerformed
-        VentanaAdoptante ventanaAdoptante = new VentanaAdoptante();
+        VentanaAgregarAdoptante ventanaAdoptante = new VentanaAgregarAdoptante();
         ventanaAdoptante.setVisible(true);
     }//GEN-LAST:event_jMenuItemAdoptanteActionPerformed
 
     private void jMenuItemMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMascotaActionPerformed
-        VentanaMascota ventanaMascota = new VentanaMascota();
+        VentanaAgregarMascota ventanaMascota = new VentanaAgregarMascota();
         ventanaMascota.setVisible(true);
     }//GEN-LAST:event_jMenuItemMascotaActionPerformed
 
     private void jMenuItemFormulariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosActionPerformed
-        VentanaAgregar ventanaForm = new VentanaAgregar();
+        VentanaAgregarFormulario ventanaForm = new VentanaAgregarFormulario();
         ventanaForm.setVisible(true);
     }//GEN-LAST:event_jMenuItemFormulariosActionPerformed
 

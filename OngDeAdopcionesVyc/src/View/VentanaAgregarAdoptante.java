@@ -3,12 +3,12 @@ import Model.Entidades.Adoptante;
 import Model.Dao.AdoptanteDao; 
 import javax.swing.table.DefaultTableModel; 
 import javax.swing.JOptionPane; 
-public class VentanaAdoptante extends javax.swing.JFrame {
+public class VentanaAgregarAdoptante extends javax.swing.JFrame {
     
     private AdoptanteDao adoptanteDao = new AdoptanteDao();
     private DefaultTableModel modeloTabla;
 
-    public VentanaAdoptante() {
+    public VentanaAgregarAdoptante() {
         initComponents();
         inicializarTabla();
     }
@@ -121,11 +121,6 @@ public class VentanaAdoptante extends javax.swing.JFrame {
 
         TableAdoptante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Yuli", "1234567", "yuli@gmail.com", "Rivadavia 4759"},
-                {"2", "Valentina", "944859", "valen@gmail.com", "Independencia 3847"},
-                {"3", "Camila", "583824", "cami@gmail.com", "Colon 7647"},
-                {"4", "Karina", "345656", "kari@gmail.com", "Dorrego 2434"},
-                {"5", "Florencia", "765437", "flor@gmail.com", "Las heras 1234"},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
@@ -259,7 +254,7 @@ public class VentanaAdoptante extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAdoptante().setVisible(true);
+                new VentanaAgregarAdoptante().setVisible(true);
             }
         });
     }

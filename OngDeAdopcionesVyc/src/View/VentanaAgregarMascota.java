@@ -8,12 +8,12 @@ package View;
  *
  * @author idra8
  */
-public class VentanaMascota extends javax.swing.JFrame {
+public class VentanaAgregarMascota extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaMascota
      */
-    public VentanaMascota() {
+    public VentanaAgregarMascota() {
         initComponents();
     }
 
@@ -72,13 +72,7 @@ public class VentanaMascota extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1), "Simon", "Perro", "Doberman mini",  new Integer(9), "Macho",  new Boolean(true), null},
-                { new Integer(2), "Tsukki", "Gato", "Carey Gris",  new Integer(5), "Hembra",  new Boolean(true), null},
-                { new Integer(3), "Zuko", "Gato", "Criollo negro",  new Integer(0), "Macho",  new Boolean(true), null},
-                { new Integer(4), "Fruti", "Gato", "Criolla",  new Integer(11), "Hembra",  new Boolean(true), null},
-                { new Integer(5), "Roco", "Perro", "Bulldog Frances",  new Integer(2), "Macho",  new Boolean(false), null},
-                { new Integer(6), "Iki", "Perro", "Pastor aleman",  new Integer(2), "Hembra",  new Boolean(true), null},
-                { new Integer(7), "Milo", "Perro", "Criollo",  new Integer(2), "Macho",  new Boolean(true), null}
+
             },
             new String [] {
                 "MascotaID", "Nombre", "Especie", "Raza", "Edad", "Sexo", "¿Adoptado?", "Fecha Ingreso"
@@ -218,20 +212,21 @@ public class VentanaMascota extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaMascota().setVisible(true);
+                new VentanaAgregarMascota().setVisible(true);
             }
         });
     }

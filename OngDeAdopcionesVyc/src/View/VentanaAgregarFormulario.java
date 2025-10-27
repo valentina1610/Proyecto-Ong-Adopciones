@@ -9,12 +9,12 @@ package View;
  *
  * @author idra8
  */
-public class VentanaAgregar extends javax.swing.JFrame {
+public class VentanaAgregarFormulario extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaFormulario
      */
-    public VentanaAgregar() {
+    public VentanaAgregarFormulario() {
         initComponents();
     }
 
@@ -42,12 +42,6 @@ public class VentanaAgregar extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1),  new Integer(1), "Yuli",  new Integer(1), "Perro", "Simon", null},
-                { new Integer(2),  new Integer(2), "Valentina",  new Integer(2), "Gato", "Tsukki", null},
-                { new Integer(3),  new Integer(3), "Camila",  new Integer(3), "Gato", "Zuko", null},
-                { new Integer(4),  new Integer(2), "Valentina",  new Integer(4), "Gato", "Fruti", null},
-                { new Integer(5),  new Integer(3), "Karina",  new Integer(7), "Perro", "Iki", null},
-                { new Integer(6),  new Integer(4), "Florencia",  new Integer(8), "Perro", "Milo", null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -190,21 +184,23 @@ public class VentanaAgregar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaAgregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarFormulario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAgregar().setVisible(true);
+                new VentanaAgregarFormulario().setVisible(true);
             }
         });
     }

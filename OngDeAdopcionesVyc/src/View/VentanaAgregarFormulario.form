@@ -99,79 +99,13 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="10">
-                <Column editable="true" title="IDFormulario" type="java.lang.Integer">
-                  <Data value="1"/>
-                  <Data value="2"/>
-                  <Data value="3"/>
-                  <Data value="4"/>
-                  <Data value="5"/>
-                  <Data value="6"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="IDAdoptantes" type="java.lang.Integer">
-                  <Data value="1"/>
-                  <Data value="2"/>
-                  <Data value="3"/>
-                  <Data value="2"/>
-                  <Data value="3"/>
-                  <Data value="4"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="NombreAdoptante" type="java.lang.String">
-                  <Data value="Yuli"/>
-                  <Data value="Valentina"/>
-                  <Data value="Camila"/>
-                  <Data value="Valentina"/>
-                  <Data value="Karina"/>
-                  <Data value="Florencia"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="IDMascota" type="java.lang.Integer">
-                  <Data value="1"/>
-                  <Data value="2"/>
-                  <Data value="3"/>
-                  <Data value="4"/>
-                  <Data value="7"/>
-                  <Data value="8"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Especie" type="java.lang.String">
-                  <Data value="Perro"/>
-                  <Data value="Gato"/>
-                  <Data value="Gato"/>
-                  <Data value="Gato"/>
-                  <Data value="Perro"/>
-                  <Data value="Perro"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="NombreMascota" type="java.lang.String">
-                  <Data value="Simon"/>
-                  <Data value="Tsukki"/>
-                  <Data value="Zuko"/>
-                  <Data value="Fruti"/>
-                  <Data value="Iki"/>
-                  <Data value="Milo"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
+              <Table columnCount="7" rowCount="4">
+                <Column editable="true" title="IDFormulario" type="java.lang.Integer"/>
+                <Column editable="true" title="IDAdoptantes" type="java.lang.Integer"/>
+                <Column editable="true" title="NombreAdoptante" type="java.lang.String"/>
+                <Column editable="true" title="IDMascota" type="java.lang.Integer"/>
+                <Column editable="true" title="Especie" type="java.lang.String"/>
+                <Column editable="true" title="NombreMascota" type="java.lang.String"/>
                 <Column editable="true" title="Fecha de adopcion" type="java.lang.String"/>
               </Table>
             </Property>
