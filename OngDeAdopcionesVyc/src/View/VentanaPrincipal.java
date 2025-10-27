@@ -164,7 +164,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemMascotaActionPerformed
 
     private void jMenuItemFormulariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosActionPerformed
-        VentanaFormulario ventanaForm = new VentanaFormulario();
+        VentanaAgregar ventanaForm = new VentanaAgregar();
         ventanaForm.setVisible(true);
     }//GEN-LAST:event_jMenuItemFormulariosActionPerformed
 
