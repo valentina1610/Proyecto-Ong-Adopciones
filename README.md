@@ -14,8 +14,6 @@ El objetivo es implementar un sistema en **Java** siguiendo la arquitectura **MV
    ```bash
    git clone https://github.com/usuario/repositorio.git
 
-   🐾 OngAdopciones
-
 
 ## 📌 ¿Qué hace el programa?
 
