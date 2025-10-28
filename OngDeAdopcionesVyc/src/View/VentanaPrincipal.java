@@ -33,11 +33,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         jMenuAdoptante = new javax.swing.JMenu();
-        jMenuItemAdoptante = new javax.swing.JMenuItem();
+        MenuItemAgregarAdoptante = new javax.swing.JMenuItem();
+        MenuItemActualizarAdoptante = new javax.swing.JMenuItem();
+        MenuItemEliminarAdoptante = new javax.swing.JMenuItem();
         jMenuMascota = new javax.swing.JMenu();
-        jMenuItemMascota = new javax.swing.JMenuItem();
+        MenuItemAgregarMascota = new javax.swing.JMenuItem();
+        MenuItemActualizarMascota = new javax.swing.JMenuItem();
+        MenuItemEliminarMascota = new javax.swing.JMenuItem();
         jMenuFormulario = new javax.swing.JMenu();
-        jMenuItemFormularios = new javax.swing.JMenuItem();
+        MenuItemAgregarFormularios = new javax.swing.JMenuItem();
+        MenuItemActualizarFormulario = new javax.swing.JMenuItem();
+        MenuItemEliminarFormulario = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -67,13 +73,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItemAdoptante.setText("Agregar Adoptante");
-        jMenuItemAdoptante.addActionListener(new java.awt.event.ActionListener() {
+        MenuItemAgregarAdoptante.setText("Agregar Adoptante");
+        MenuItemAgregarAdoptante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAdoptanteActionPerformed(evt);
+                MenuItemAgregarAdoptanteActionPerformed(evt);
             }
         });
-        jMenuAdoptante.add(jMenuItemAdoptante);
+        jMenuAdoptante.add(MenuItemAgregarAdoptante);
+
+        MenuItemActualizarAdoptante.setText("Actualizar Adoptante");
+        MenuItemActualizarAdoptante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemActualizarAdoptanteActionPerformed(evt);
+            }
+        });
+        jMenuAdoptante.add(MenuItemActualizarAdoptante);
+
+        MenuItemEliminarAdoptante.setText("Eliminar Adoptante");
+        MenuItemEliminarAdoptante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemEliminarAdoptanteActionPerformed(evt);
+            }
+        });
+        jMenuAdoptante.add(MenuItemEliminarAdoptante);
 
         menu.add(jMenuAdoptante);
 
@@ -84,13 +106,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItemMascota.setText("Agregar mascota");
-        jMenuItemMascota.addActionListener(new java.awt.event.ActionListener() {
+        MenuItemAgregarMascota.setText("Agregar mascota");
+        MenuItemAgregarMascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemMascotaActionPerformed(evt);
+                MenuItemAgregarMascotaActionPerformed(evt);
             }
         });
-        jMenuMascota.add(jMenuItemMascota);
+        jMenuMascota.add(MenuItemAgregarMascota);
+
+        MenuItemActualizarMascota.setText("Actualizar Mascota");
+        MenuItemActualizarMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemActualizarMascotaActionPerformed(evt);
+            }
+        });
+        jMenuMascota.add(MenuItemActualizarMascota);
+
+        MenuItemEliminarMascota.setText("Eliminar Mascota");
+        MenuItemEliminarMascota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemEliminarMascotaActionPerformed(evt);
+            }
+        });
+        jMenuMascota.add(MenuItemEliminarMascota);
 
         menu.add(jMenuMascota);
         jMenuMascota.getAccessibleContext().setAccessibleDescription("");
@@ -102,13 +140,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItemFormularios.setText("Agregar formulario");
-        jMenuItemFormularios.addActionListener(new java.awt.event.ActionListener() {
+        MenuItemAgregarFormularios.setText("Agregar formulario");
+        MenuItemAgregarFormularios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemFormulariosActionPerformed(evt);
+                MenuItemAgregarFormulariosActionPerformed(evt);
             }
         });
-        jMenuFormulario.add(jMenuItemFormularios);
+        jMenuFormulario.add(MenuItemAgregarFormularios);
+
+        MenuItemActualizarFormulario.setText("Actualizar Formulario");
+        MenuItemActualizarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemActualizarFormularioActionPerformed(evt);
+            }
+        });
+        jMenuFormulario.add(MenuItemActualizarFormulario);
+
+        MenuItemEliminarFormulario.setText("EliminarFormulario");
+        MenuItemEliminarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuItemEliminarFormularioActionPerformed(evt);
+            }
+        });
+        jMenuFormulario.add(MenuItemEliminarFormulario);
 
         menu.add(jMenuFormulario);
 
@@ -153,20 +207,50 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuFormularioActionPerformed
 
-    private void jMenuItemAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdoptanteActionPerformed
+    private void MenuItemAgregarAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAgregarAdoptanteActionPerformed
         VentanaAgregarAdoptante ventanaAdoptante = new VentanaAgregarAdoptante();
         ventanaAdoptante.setVisible(true);
-    }//GEN-LAST:event_jMenuItemAdoptanteActionPerformed
+    }//GEN-LAST:event_MenuItemAgregarAdoptanteActionPerformed
 
-    private void jMenuItemMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMascotaActionPerformed
+    private void MenuItemAgregarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAgregarMascotaActionPerformed
         VentanaAgregarMascota ventanaMascota = new VentanaAgregarMascota();
         ventanaMascota.setVisible(true);
-    }//GEN-LAST:event_jMenuItemMascotaActionPerformed
+    }//GEN-LAST:event_MenuItemAgregarMascotaActionPerformed
 
-    private void jMenuItemFormulariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFormulariosActionPerformed
+    private void MenuItemAgregarFormulariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemAgregarFormulariosActionPerformed
         VentanaAgregarFormulario ventanaForm = new VentanaAgregarFormulario();
         ventanaForm.setVisible(true);
-    }//GEN-LAST:event_jMenuItemFormulariosActionPerformed
+    }//GEN-LAST:event_MenuItemAgregarFormulariosActionPerformed
+
+    private void MenuItemActualizarAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActualizarAdoptanteActionPerformed
+        VentanaActualizarAdoptante ventanaActAdoptante = new VentanaActualizarAdoptante();
+        ventanaActAdoptante.setVisible(true);
+    }//GEN-LAST:event_MenuItemActualizarAdoptanteActionPerformed
+
+    private void MenuItemEliminarAdoptanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEliminarAdoptanteActionPerformed
+        VentanaEliminarAdoptante ventanaElimAdoptante = new VentanaEliminarAdoptante();
+        ventanaElimAdoptante.setVisible(true);
+    }//GEN-LAST:event_MenuItemEliminarAdoptanteActionPerformed
+
+    private void MenuItemActualizarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActualizarMascotaActionPerformed
+        VentanaActualizarMascota ventanaActMascota = new VentanaActualizarMascota();
+        ventanaActMascota.setVisible(true);
+    }//GEN-LAST:event_MenuItemActualizarMascotaActionPerformed
+
+    private void MenuItemEliminarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEliminarMascotaActionPerformed
+        VentanaEliminarMascota ventanaElimMascota = new VentanaEliminarMascota();
+        ventanaElimMascota.setVisible(true);
+    }//GEN-LAST:event_MenuItemEliminarMascotaActionPerformed
+
+    private void MenuItemActualizarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemActualizarFormularioActionPerformed
+        VentanaActualizarFormulario ventanaActFormulario = new VentanaActualizarFormulario();
+        ventanaActFormulario.setVisible(true);
+    }//GEN-LAST:event_MenuItemActualizarFormularioActionPerformed
+
+    private void MenuItemEliminarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemEliminarFormularioActionPerformed
+        VentanaEliminarFormulario ventanaElimFormulario = new VentanaEliminarFormulario();
+        ventanaElimFormulario.setVisible(true);
+    }//GEN-LAST:event_MenuItemEliminarFormularioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +288,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuItemActualizarAdoptante;
+    private javax.swing.JMenuItem MenuItemActualizarFormulario;
+    private javax.swing.JMenuItem MenuItemActualizarMascota;
+    private javax.swing.JMenuItem MenuItemAgregarAdoptante;
+    private javax.swing.JMenuItem MenuItemAgregarFormularios;
+    private javax.swing.JMenuItem MenuItemAgregarMascota;
+    private javax.swing.JMenuItem MenuItemEliminarAdoptante;
+    private javax.swing.JMenuItem MenuItemEliminarFormulario;
+    private javax.swing.JMenuItem MenuItemEliminarMascota;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -211,9 +304,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenuAdoptante;
     private javax.swing.JMenu jMenuFormulario;
-    private javax.swing.JMenuItem jMenuItemAdoptante;
-    private javax.swing.JMenuItem jMenuItemFormularios;
-    private javax.swing.JMenuItem jMenuItemMascota;
     private javax.swing.JMenu jMenuMascota;
     private javax.swing.JMenuBar menu;
     // End of variables declaration//GEN-END:variables

@@ -30,12 +30,28 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuAdoptanteActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemAdoptante">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemAgregarAdoptante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar Adoptante"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAdoptanteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemAgregarAdoptanteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemActualizarAdoptante">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar Adoptante"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemActualizarAdoptanteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemEliminarAdoptante">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar Adoptante"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemEliminarAdoptanteActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -51,12 +67,28 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuMascotaActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMascota">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemAgregarMascota">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar mascota"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemMascotaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemAgregarMascotaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemActualizarMascota">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar Mascota"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemActualizarMascotaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemEliminarMascota">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar Mascota"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemEliminarMascotaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -69,12 +101,28 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuFormularioActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemFormularios">
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemAgregarFormularios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar formulario"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemFormulariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemAgregarFormulariosActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemActualizarFormulario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar Formulario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemActualizarFormularioActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuItemEliminarFormulario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="EliminarFormulario"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuItemEliminarFormularioActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
