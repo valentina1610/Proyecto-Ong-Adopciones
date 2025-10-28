@@ -8,12 +8,12 @@ package View;
  *
  * @author gc
  */
-public class VentanaAcualizarMascota extends javax.swing.JFrame {
+public class VentanaActualizarMascota extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaAcualizarMascota
      */
-    public VentanaAcualizarMascota() {
+    public VentanaActualizarMascota() {
         initComponents();
     }
 
@@ -231,20 +231,21 @@ public class VentanaAcualizarMascota extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaAcualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaActualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaAcualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaActualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaAcualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaActualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaAcualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaActualizarMascota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAcualizarMascota().setVisible(true);
+                new VentanaActualizarMascota().setVisible(true);
             }
         });
     }
