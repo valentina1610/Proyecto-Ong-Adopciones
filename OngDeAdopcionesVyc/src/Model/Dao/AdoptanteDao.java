@@ -2,13 +2,44 @@ package Model.Dao;
 import Model.Entidades.Adoptante;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import Model.Dao.Conexion;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 public class AdoptanteDao implements Dao<Adoptante> {
     private List<Adoptante> listAdoptantes = new ArrayList<>();
+    
+        private Connection conn;
+        
+        public AdoptanteDao() {
+        conn = Conexion.getConnection();
+    }
+
 
     @Override
     public void save(Adoptante a) throws DaoException {
-        listAdoptantes.add(a); //Agrega a la lista de adoptantes
+
+    listAdoptantes.add(a);
+
+    String sql = "INSERT INTO Adoptante (nombre, telefono, email, direccion) VALUES (?, ?, ?, ?)";
+    try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        ps.setString(1, a.getNombre());
+        ps.setString(2, a.getTelefono());
+        ps.setString(3, a.getEmail());
+        ps.setString(4, a.getDireccion());
+        ps.executeUpdate();
+
+        try (ResultSet rs = ps.getGeneratedKeys()) {
+            if (rs.next()) a.setIdAdoptante(rs.getInt(1));
+        }
+    } catch (SQLException e) {
+        throw new DaoException("Error al guardar adoptante en DB: " + e.getMessage());
     }
+}
 
     @Override
     public List<Adoptante> findAll() throws DaoException {
@@ -26,26 +57,45 @@ public class AdoptanteDao implements Dao<Adoptante> {
 
     @Override
     public void update(Adoptante a) throws DaoException {
-        for (int i = 0; i<listAdoptantes.size(); i++) { //recorre la lista
-            if (listAdoptantes.get(i).getIdAdoptante() == a.getIdAdoptante()) { //Si un id coincide con el id de el obj pasado por parametro
-                listAdoptantes.set(i,a); //lo modifica en esa posicion
-                return; 
-            }
-            throw new DaoException("Adoptante con ID " + a.getIdAdoptante() + " no encontrado."); //si no se encontro ninguno adoptante con dicho id, salta la excepcion para avisar al usuario
+    boolean encontrado = false;
 
+    for (int i = 0; i < listAdoptantes.size(); i++) {
+        if (listAdoptantes.get(i).getIdAdoptante() == a.getIdAdoptante()) {
+            listAdoptantes.set(i, a);
+            encontrado = true;
+            break;
         }
     }
+
+    if (!encontrado) {
+        throw new DaoException("Adoptante con ID " + a.getIdAdoptante() + " no encontrado.");
+    }
+
+    // Ahora actualizamos en la base de datos
+    String sql = "UPDATE Adoptante SET nombre=?, telefono=?, email=?, direccion=? WHERE idAdoptante=?";
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setString(1, a.getNombre());
+        ps.setString(2, a.getTelefono());
+        ps.setString(3, a.getEmail());
+        ps.setString(4, a.getDireccion());
+        ps.setInt(5, a.getIdAdoptante());
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        throw new DaoException("Error al actualizar adoptante en DB: " + e.getMessage());
+    }
+}
 
     @Override
     public void delete(int id) throws DaoException {
-        for (int i = 0; i< listAdoptantes.size(); i++) {
-            if (listAdoptantes.get(i).getIdAdoptante() == id) {
-                listAdoptantes.remove(i); //cuando encuentra un id que coincida con el obj pasado por parametro lo remueve de la lista
-                return;
-            }
-            throw new DaoException("Adoptante con ID " + id + " no encontrado.");
-        }
+    
+    listAdoptantes.removeIf(a -> a.getIdAdoptante() == id);
+
+    String sql = "DELETE FROM Adoptante WHERE idAdoptante=?";
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, id);
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        throw new DaoException("Error al eliminar adoptante en DB: " + e.getMessage());
     }
-    
-    
+}
 }
