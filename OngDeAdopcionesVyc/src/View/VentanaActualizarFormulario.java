@@ -1,8 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
+import Model.Dao.FormularioDao;
+import Model.Dao.MascotaDao;
+import Model.Dao.AdoptanteDao;
+import Model.Dao.DaoException;
+import Model.Entidades.Formulario;
+import Model.Entidades.Mascota;
+import Model.Entidades.Adoptante;
+import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+
 
 /**
  *
@@ -15,7 +21,14 @@ public class VentanaActualizarFormulario extends javax.swing.JFrame {
      */
     public VentanaActualizarFormulario() {
         initComponents();
+        modeloTabla = (DefaultTableModel) jTable1.getModel();
+        cargarTabla();
     }
+    
+    DefaultTableModel modeloTabla;
+    FormularioDao formularioDao = new FormularioDao();
+    MascotaDao mascotaDao = new MascotaDao();
+    AdoptanteDao adoptanteDao = new AdoptanteDao();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -185,13 +198,85 @@ public class VentanaActualizarFormulario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+        int idFormulario = Integer.parseInt(jTextField4.getText());
+        int idAdoptante = Integer.parseInt(jTextField1.getText());
+        int idMascota = Integer.parseInt(jTextField2.getText());
+        LocalDate fechaAdopcion = LocalDate.parse(jTextField3.getText());
+
+        // Buscar entidades
+        Adoptante adoptante = adoptanteDao.findById(idAdoptante);
+        if (adoptante == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "El adoptante con ID " + idAdoptante + " no existe.");
+            return;
+        }
+
+        Mascota mascota = mascotaDao.findById(idMascota);
+        if (mascota == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "La mascota con ID " + idMascota + " no existe.");
+            return;
+        }
+
+        // Buscar formulario
+        Formulario formulario = formularioDao.findById(idFormulario);
+        if (formulario == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "El formulario con ID " + idFormulario + " no existe.");
+            return;
+        }
+
+        // Actualizar datos
+        formulario.setAdoptante(adoptante);
+        formulario.setMascota(mascota);
+        formulario.setFechaAdopcion(fechaAdopcion);
+
+        // Guardar en DB
+        formularioDao.update(formulario);
+
+        // Recargar tabla
+        cargarTabla();
+
+        // Limpiar campos
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Formulario actualizado correctamente.");
+
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Error al actualizar formulario: " + e.getMessage());
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void cargarTabla() {
+    modeloTabla.setRowCount(0); // Limpiar tabla
+    try {
+        for (Formulario f : formularioDao.findAll()) {
+            modeloTabla.addRow(new Object[]{
+                f.getIdFormulario(),
+                f.getAdoptante().getIdAdoptante(),
+                f.getAdoptante().getNombre(),
+                f.getMascota().getIdMascota(),
+                f.getMascota().getEspecie(),
+                f.getMascota().getNombre(),
+                f.getFechaAdopcion()
+            });
+        }
+    } catch (DaoException e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Error al cargar formularios: " + e.getMessage());
+    }
+}
+    
     /**
      * @param args the command line arguments
      */

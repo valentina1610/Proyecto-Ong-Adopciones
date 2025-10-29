@@ -1,4 +1,3 @@
-
 package View;
 import Model.Dao.FormularioDao;
 import Model.Dao.DaoException;
@@ -14,6 +13,7 @@ public class VentanaEliminarFormulario extends javax.swing.JFrame {
      */
     public VentanaEliminarFormulario() {
         initComponents();
+        cargarTabla();
     }
 
     /**

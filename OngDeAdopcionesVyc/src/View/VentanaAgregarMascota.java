@@ -14,9 +14,13 @@ import java.util.List;
 public class VentanaAgregarMascota extends javax.swing.JFrame {
 
     public VentanaAgregarMascota() {
-        initComponents();
-        //cargarTabla();
-    }
+    initComponents();
+
+    java.awt.EventQueue.invokeLater(() -> {
+        cargarTabla(); // carga la tabla cuando la ventana ya está visible
+    });
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -245,11 +249,13 @@ public class VentanaAgregarMascota extends javax.swing.JFrame {
     try {
         MascotaDao mascotaDao = new MascotaDao();
         List<Mascota> mascotas = mascotaDao.findAll();
+        System.out.println("Mascotas encontradas: " + mascotas.size());
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // limpia la tabla antes de cargar
 
         for (Mascota m : mascotas) {
+            boolean adoptado = "Adoptado".equalsIgnoreCase(m.getEstado());
             model.addRow(new Object[]{
                 m.getIdMascota(),
                 m.getNombre(),
@@ -257,8 +263,8 @@ public class VentanaAgregarMascota extends javax.swing.JFrame {
                 m.getRaza(),
                 m.getEdad(),
                 m.getSexo(),
-                m.getEstado(),
-                m.getFechaIngreso()
+                adoptado, // Boolean
+                m.getFechaIngreso() != null ? m.getFechaIngreso().toString() : ""
             });
         }
 

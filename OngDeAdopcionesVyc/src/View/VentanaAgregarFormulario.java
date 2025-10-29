@@ -21,6 +21,7 @@ public class VentanaAgregarFormulario extends javax.swing.JFrame {
     public VentanaAgregarFormulario() {
         initComponents();
         modeloTabla = (DefaultTableModel) jTable1.getModel(); // 🔹 Inicializa el modelo de la tabla
+        cargarTabla();
     }
 
 
@@ -216,6 +217,27 @@ public class VentanaAgregarFormulario extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cargarTabla() {
+    modeloTabla.setRowCount(0); // Limpiar tabla
+    try {
+        for (Formulario f : formularioDao.findAll()) {
+            modeloTabla.addRow(new Object[]{
+                f.getIdFormulario(),
+                f.getAdoptante().getIdAdoptante(),
+                f.getAdoptante().getNombre(),
+                f.getMascota().getIdMascota(),
+                f.getMascota().getEspecie(),
+                f.getMascota().getNombre(),
+                f.getFechaAdopcion()
+            });
+        }
+    } catch (DaoException e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Error al cargar formularios: " + e.getMessage());
+    }
+}
+
+    
     /**
      * @param args the command line arguments
      */
