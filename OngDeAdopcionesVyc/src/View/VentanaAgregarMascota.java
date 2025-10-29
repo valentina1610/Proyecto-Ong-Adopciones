@@ -13,9 +13,6 @@ import java.util.List;
  */
 public class VentanaAgregarMascota extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaMascota
-     */
     public VentanaAgregarMascota() {
         initComponents();
     }
@@ -196,13 +193,14 @@ public class VentanaAgregarMascota extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                                       
-    try {
+    try { // Obtiene los datos del formulario
         String nombre = jTextField1.getText();
         String especie = (String) jComboBox1.getSelectedItem();
         String raza = jTextField2.getText();
         int edad = Integer.parseInt((String) jComboBox3.getSelectedItem());
         String sexo = (String) jComboBox4.getSelectedItem();
 
+        // Crea el objeto mascota
         Mascota m = new Mascota();
         m.setNombre(nombre);
         m.setEspecie(especie);
@@ -212,32 +210,36 @@ public class VentanaAgregarMascota extends javax.swing.JFrame {
         m.setEstado("Disponible");
         m.setFechaIngreso(LocalDate.now());
 
+        // La guarda en DB
         MascotaDao mascotaDao = new MascotaDao();
         mascotaDao.save(m);
 
         JOptionPane.showMessageDialog(this, "Mascota agregada correctamente.");
         cargarTabla(); // actualiza la tabla
 
-        // Limpiar campos
+        // Limpia campos
         jTextField1.setText("");
         jTextField2.setText("");
         jComboBox1.setSelectedIndex(0);
         jComboBox3.setSelectedIndex(0);
         jComboBox4.setSelectedIndex(0);
 
-    } catch (DaoException ex) {
+    } catch (DaoException ex) { // Manejo de errores
         JOptionPane.showMessageDialog(this, "Error al agregar mascota: " + ex.getMessage());
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // Metodo para que muestra la tabla 
     private void cargarTabla() {
     try {
-        MascotaDao mascotaDao = new MascotaDao();
-        List<Mascota> mascotas = mascotaDao.findAll(); 
+        MascotaDao mascotaDao = new MascotaDao(); // Se crea una mascota 
+        List<Mascota> mascotas = mascotaDao.findAll(); // Se llama al finAll que muestra a la lista de mascotas
 
+        // DefaultModelTable= objeto que almacena los datos que se muestran en la tabla, propio de javax.swing.table
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // limpia la tabla
 
+        // agrega filas una por una
         for (Mascota m : mascotas) {
             model.addRow(new Object[]{
                 m.getIdMascota(),
@@ -251,7 +253,7 @@ public class VentanaAgregarMascota extends javax.swing.JFrame {
             });
         }
 
-    } catch (DaoException ex) {
+    } catch (DaoException ex) { // manejo de errores
         JOptionPane.showMessageDialog(this, "Error al cargar tabla: " + ex.getMessage());
     }
     }

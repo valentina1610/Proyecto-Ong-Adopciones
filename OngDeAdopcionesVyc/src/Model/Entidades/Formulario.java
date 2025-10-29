@@ -8,6 +8,9 @@ public class Formulario {
     private Adoptante Adoptante; //FK
     private LocalDate fechaAdopcion;
     
+    public Formulario() {
+    }
+    
     public Formulario(int idFormulario, Mascota Mascota, Adoptante Adoptante, LocalDate fechaAdopcion) {
         this.idFormulario = idFormulario;
         this.Mascota = Mascota;

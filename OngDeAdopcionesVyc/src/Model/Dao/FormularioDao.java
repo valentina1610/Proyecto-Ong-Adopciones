@@ -8,11 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Model.Entidades.Formulario;
+import Model.Entidades.Mascota;
+import Model.Entidades.Adoptante;
+
 
 public class FormularioDao implements Dao<Formulario>{
     private List<Formulario> listFormularios = new ArrayList<>();
 
-    private Connection conn;
+    private final Connection conn;
     
     public FormularioDao() { 
     conn = Conexion.getConnection();
@@ -31,7 +35,7 @@ public class FormularioDao implements Dao<Formulario>{
         ps.executeUpdate();
 
         try (ResultSet rs = ps.getGeneratedKeys()) {
-            if (rs.next()) f.setIdFormulario(rs.getInt(1)); // Guardamos el ID generado
+            if (rs.next()) f.setIdFormulario(rs.getInt(1)); 
         }
     } catch (SQLException e) {
         throw new DaoException("Error al guardar formulario en DB: " + e.getMessage());
@@ -40,8 +44,39 @@ public class FormularioDao implements Dao<Formulario>{
 
     @Override
     public List<Formulario> findAll() throws DaoException {
-        return new ArrayList<>(listFormularios); // devuelve copia de la lista
+    List<Formulario> formularios = new ArrayList<>();
+    String sql = "SELECT * FROM Formulario";
+
+    try (PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+    Formulario f = new Formulario();
+    f.setIdFormulario(rs.getInt("idFormulario"));
+
+    // Crear objetos relacionados
+    Mascota m = new Mascota();
+    m.setIdMascota(rs.getInt("idMascota"));
+    f.setMascota(m);
+
+    Adoptante a = new Adoptante();
+    a.setIdAdoptante(rs.getInt("idAdoptante"));
+    f.setAdoptante(a);
+
+    if (rs.getDate("fechaAdopcion") != null) {
+        f.setFechaAdopcion(rs.getDate("fechaAdopcion").toLocalDate());
     }
+
+    formularios.add(f);
+    }
+
+
+    } catch (SQLException e) {
+        throw new DaoException("Error al obtener formularios de la base de datos: " + e.getMessage(), e);
+    }
+
+    return formularios;
+}
 
     @Override
     public Formulario findById(int id) throws DaoException {
@@ -52,7 +87,7 @@ public class FormularioDao implements Dao<Formulario>{
     }
 
     @Override
-public void update(Formulario f) throws DaoException {
+    public void update(Formulario f) throws DaoException {
     boolean encontrado = false;
 
     // Primero actualizamos la lista en memoria
@@ -83,17 +118,15 @@ public void update(Formulario f) throws DaoException {
 
     @Override
     public void delete(int id) throws DaoException {
+    listFormularios.removeIf(f -> f.getIdFormulario() == id);
 
-    listFormularios.removeIf(a -> a.getIdFormulario() == id);
-
-    String sql = "DELETE FROM Adoptante WHERE idAdoptante=?";
+    String sql = "DELETE FROM Formulario WHERE idFormulario=?";
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
         ps.setInt(1, id);
         ps.executeUpdate();
     } catch (SQLException e) {
-        throw new DaoException("Error al eliminar adoptante en DB: " + e.getMessage());
+        throw new DaoException("Error al eliminar formulario en DB: " + e.getMessage(), e);
     }
 }
-    
-    
+
 }

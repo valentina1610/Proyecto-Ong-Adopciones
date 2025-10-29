@@ -17,6 +17,7 @@ public class VentanaEliminarAdoptante extends javax.swing.JFrame {
      */
     public VentanaEliminarAdoptante() {
         initComponents();
+        cargarTabla();
     }
 
     /**
@@ -108,17 +109,16 @@ public class VentanaEliminarAdoptante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
-    
-        
+   
         try {
         AdoptanteDao adoptanteDao = new AdoptanteDao();
 
         int id = Integer.parseInt(TextFieldNombre.getText().trim());
         adoptanteDao.delete(id);
         javax.swing.JOptionPane.showMessageDialog(this, " Adoptante eliminado correctamente.");
-
-        cargarTabla();
+        
         TextFieldNombre.setText("");
+        cargarTabla();
 
     } catch (NumberFormatException ex) {
         javax.swing.JOptionPane.showMessageDialog(this, " Ingresá un ID numérico válido.");

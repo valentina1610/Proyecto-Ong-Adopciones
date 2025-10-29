@@ -1,9 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
-
+import Model.Dao.AdoptanteDao;
+import Model.Dao.DaoException;
+import Model.Entidades.Adoptante;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author gc
@@ -15,6 +16,7 @@ public class VentanaActualizarAdoptante extends javax.swing.JFrame {
      */
     public VentanaActualizarAdoptante() {
         initComponents();
+        cargarTabla();
     }
 
     /**
@@ -158,7 +160,85 @@ public class VentanaActualizarAdoptante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
-      
+
+        try {
+        AdoptanteDao adoptanteDao = new AdoptanteDao();
+
+        // Obtiene el id del adoptante para actualizar
+        int id = Integer.parseInt(TextFieldNombre1.getText().trim());
+
+        // Obtener datos nuevos
+        String nombre = TextFieldNombre.getText().trim();
+        String telefono = TextFieldTelefono.getText().trim();
+        String email = TextFieldEmail.getText().trim();
+        String direccion = TextFieldDireccion.getText().trim();
+
+        // Valida los campos
+        if (nombre.isEmpty() || telefono.isEmpty() || email.isEmpty() || direccion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor completá todos los campos.");
+            return;
+        }
+
+        // Buscar adoptante en la DB
+        Adoptante a = adoptanteDao.findById(id);
+        if (a == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró adoptante con ID " + id);
+            return;
+        }
+
+        // Actualiza los datos
+        a.setNombre(nombre);
+        a.setTelefono(telefono);
+        a.setEmail(email);
+        a.setDireccion(direccion);
+
+        adoptanteDao.update(a);
+
+        JOptionPane.showMessageDialog(this, "Adoptante actualizado correctamente.");
+
+        // Limpia los campos
+        TextFieldNombre1.setText("");
+        TextFieldNombre.setText("");
+        TextFieldTelefono.setText("");
+        TextFieldEmail.setText("");
+        TextFieldDireccion.setText("");
+
+        // Refresca la tabla
+        cargarTabla();
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Ingresá un ID numérico válido.");
+    } catch (DaoException ex) {
+        JOptionPane.showMessageDialog(this, "Error al actualizar adoptante: " + ex.getMessage());
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error inesperado: " + ex.getMessage());
+    }
+}
+
+    private void cargarTabla() {
+    try {
+        AdoptanteDao adoptanteDao = new AdoptanteDao();
+        List<Adoptante> lista = adoptanteDao.findAll();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"IDAdoptante", "Nombre", "Telefono", "Email", "Direccion"});
+
+        for (Adoptante a : lista) {
+            modelo.addRow(new Object[]{
+                a.getIdAdoptante(),
+                a.getNombre(),
+                a.getTelefono(),
+                a.getEmail(),
+                a.getDireccion()
+            });
+        }
+
+        TableAdoptante.setModel(modelo);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar la tabla: " + e.getMessage());
+    }
+    
     }//GEN-LAST:event_ButtonAgregarActionPerformed
 
     /**

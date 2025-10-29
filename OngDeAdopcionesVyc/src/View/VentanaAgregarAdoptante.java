@@ -11,6 +11,7 @@ public class VentanaAgregarAdoptante extends javax.swing.JFrame {
     public VentanaAgregarAdoptante() {
         initComponents();
         inicializarTabla();
+        adoptanteDao = new AdoptanteDao();
     }
     
       // Inicializa las columnas de la tabla
@@ -229,11 +230,9 @@ public class VentanaAgregarAdoptante extends javax.swing.JFrame {
                 return;
             }
 
-            // Generar ID automáticamente (según tamaño de lista)
-            int nuevoId = adoptanteDao.findAll().size() + 1;
+             Adoptante nuevo = new Adoptante(0, nombre, telefono, email, direccion);
+             adoptanteDao.save(nuevo);
 
-            Adoptante nuevo = new Adoptante(nuevoId, nombre, telefono, email, direccion);
-            adoptanteDao.save(nuevo); // guarda en la lista del DAO
 
             cargarTabla(); // refresca la tabla
 

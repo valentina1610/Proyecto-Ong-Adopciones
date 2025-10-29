@@ -16,7 +16,6 @@ public class Adoptante {
     }
     
     public Adoptante() {
-        
     }
     
     // Getters y setters

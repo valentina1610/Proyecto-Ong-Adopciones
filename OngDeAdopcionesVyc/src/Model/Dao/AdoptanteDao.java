@@ -11,9 +11,8 @@ import java.sql.SQLException;
 
 
 public class AdoptanteDao implements Dao<Adoptante> {
-    private List<Adoptante> listAdoptantes = new ArrayList<>();
     
-        private Connection conn;
+        private final Connection conn;
         
         public AdoptanteDao() {
         conn = Conexion.getConnection();
@@ -22,8 +21,6 @@ public class AdoptanteDao implements Dao<Adoptante> {
 
     @Override
     public void save(Adoptante a) throws DaoException {
-
-    listAdoptantes.add(a);
 
     String sql = "INSERT INTO Adoptante (nombre, telefono, email, direccion) VALUES (?, ?, ?, ?)";
     try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -43,59 +40,83 @@ public class AdoptanteDao implements Dao<Adoptante> {
 
     @Override
     public List<Adoptante> findAll() throws DaoException {
-        return listAdoptantes; //Retorna la lista
-    }
+        List<Adoptante> adoptantes = new ArrayList<>();
+        String sql = "SELECT * FROM Adoptante";
 
+        try (PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Adoptante a = new Adoptante();
+                a.setIdAdoptante(rs.getInt("idAdoptante"));
+                a.setNombre(rs.getString("nombre"));
+                a.setTelefono(rs.getString("telefono"));
+                a.setEmail(rs.getString("email"));
+                a.setDireccion(rs.getString("direccion"));
+                adoptantes.add(a);
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al obtener adoptantes de la base de datos: " + e.getMessage(), e);
+        }
+
+        return adoptantes;
+    }
+    
     @Override
     public Adoptante findById(int id) throws DaoException {
-        return listAdoptantes.stream()
-                .filter(a ->a.getIdAdoptante() == id) //Un Stream es como una tubería por donde pasan los datos de la lista y se le puede ir aplicando pasos: filtrar, transformar, ordenar, contar, etc.
-                //Busca un id de la variable "Adoptantes a" que sea igual a el id pasado por parametro
-                .findFirst() //Corta el stream al primero que encuentra, y devuelve el adoptante si alguno coincide
-                .orElse(null); //Y si no encuentra devuelve null
+        String sql = "SELECT * FROM Adoptante WHERE idAdoptante=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Adoptante a = new Adoptante();
+                    a.setIdAdoptante(rs.getInt("idAdoptante"));
+                    a.setNombre(rs.getString("nombre"));
+                    a.setTelefono(rs.getString("telefono"));
+                    a.setEmail(rs.getString("email"));
+                    a.setDireccion(rs.getString("direccion"));
+                    return a;
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error al buscar adoptante en DB: " + e.getMessage(), e);
+        }
+        return null;
     }
 
     @Override
     public void update(Adoptante a) throws DaoException {
-    boolean encontrado = false;
+        String sql = "UPDATE Adoptante SET nombre=?, telefono=?, email=?, direccion=? WHERE idAdoptante=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, a.getNombre());
+            ps.setString(2, a.getTelefono());
+            ps.setString(3, a.getEmail());
+            ps.setString(4, a.getDireccion());
+            ps.setInt(5, a.getIdAdoptante());
 
-    for (int i = 0; i < listAdoptantes.size(); i++) {
-        if (listAdoptantes.get(i).getIdAdoptante() == a.getIdAdoptante()) {
-            listAdoptantes.set(i, a);
-            encontrado = true;
-            break;
+            int filasActualizadas = ps.executeUpdate();
+
+            if (filasActualizadas == 0) {
+                throw new DaoException("No se encontró adoptante con ID " + a.getIdAdoptante() + " para actualizar.");
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error al actualizar adoptante en DB: " + e.getMessage(), e);
         }
     }
 
-    if (!encontrado) {
-        throw new DaoException("Adoptante con ID " + a.getIdAdoptante() + " no encontrado.");
-    }
-
-    // Ahora actualizamos en la base de datos
-    String sql = "UPDATE Adoptante SET nombre=?, telefono=?, email=?, direccion=? WHERE idAdoptante=?";
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setString(1, a.getNombre());
-        ps.setString(2, a.getTelefono());
-        ps.setString(3, a.getEmail());
-        ps.setString(4, a.getDireccion());
-        ps.setInt(5, a.getIdAdoptante());
-        ps.executeUpdate();
-    } catch (SQLException e) {
-        throw new DaoException("Error al actualizar adoptante en DB: " + e.getMessage());
-    }
-}
-
     @Override
     public void delete(int id) throws DaoException {
-    
-    listAdoptantes.removeIf(a -> a.getIdAdoptante() == id);
+        String sql = "DELETE FROM Adoptante WHERE idAdoptante=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            int filasEliminadas = ps.executeUpdate();
 
-    String sql = "DELETE FROM Adoptante WHERE idAdoptante=?";
-    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setInt(1, id);
-        ps.executeUpdate();
-    } catch (SQLException e) {
-        throw new DaoException("Error al eliminar adoptante en DB: " + e.getMessage());
-    }
+            if (filasEliminadas == 0) {
+                throw new DaoException("No se encontró adoptante con ID " + id + " para eliminar.");
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error al eliminar adoptante en DB: " + e.getMessage(), e);
+        }
 }
 }

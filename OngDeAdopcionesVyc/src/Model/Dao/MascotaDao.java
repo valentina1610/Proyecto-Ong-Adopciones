@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MascotaDao implements Dao<Mascota>{
-    private List<Mascota> listMascotas = new ArrayList<>();
     
-    private Connection conn; 
+    // conexion con base de datos
+    private final Connection conn; 
 
     public MascotaDao() {
     conn = Conexion.getConnection();
@@ -42,39 +42,68 @@ public class MascotaDao implements Dao<Mascota>{
     }
 }
 
-    @Override
+     @Override
     public List<Mascota> findAll() throws DaoException {
-        return listMascotas; //Retorna la lista
-    }
+        List<Mascota> mascotas = new ArrayList<>();
+        String sql = "SELECT * FROM Mascota";
+        
+    try (PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
+            while (rs.next()) {
+                Mascota m = new Mascota();
+                m.setIdMascota(rs.getInt("idMascota"));
+                m.setNombre(rs.getString("nombre"));
+                m.setEspecie(rs.getString("especie"));
+                m.setRaza(rs.getString("raza"));
+                m.setSexo(rs.getString("sexo"));
+                m.setEdad(rs.getInt("edad"));
+                m.setEstado(rs.getString("estado"));
+                m.setFechaIngreso(rs.getDate("fechaIngreso") != null
+                        ? rs.getDate("fechaIngreso").toLocalDate()
+                        : null);
+
+                mascotas.add(m);
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al obtener mascotas de la base de datos: " + e.getMessage());
+        }
+    
+        return mascotas;
+    }
+    
     @Override
     public Mascota findById(int id) throws DaoException {
-        return listMascotas.stream()
-                .filter(m ->m.getIdMascota() == id) //Un Stream es como una tubería por donde pasan los datos de la lista y se le puede ir aplicando pasos: filtrar, transformar, ordenar, contar, etc.
-                //Busca un id de la variable "Mascotas m" que sea igual a el id pasado por parametro
-                .findFirst() //Corta el stream al primero que encuentra, y devuelve el adoptante si alguno coincide
-                .orElse(null); //Y si no encuentra devuelve null
-    }
-
-    @Override
-public void update(Mascota m) throws DaoException {
-    boolean encontrado = false;
-
-    // Primero actualizamos la lista en memoria
-    for (int i = 0; i < listMascotas.size(); i++) {
-        if (listMascotas.get(i).getIdMascota() == m.getIdMascota()) {
-            listMascotas.set(i, m);
-            encontrado = true;
-            break;
+    String sql = "SELECT * FROM Mascota WHERE idMascota=?";
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, id);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                Mascota m = new Mascota();
+                m.setIdMascota(rs.getInt("idMascota"));
+                m.setNombre(rs.getString("nombre"));
+                m.setEspecie(rs.getString("especie"));
+                m.setRaza(rs.getString("raza"));
+                m.setSexo(rs.getString("sexo"));
+                m.setEdad(rs.getInt("edad"));
+                m.setEstado(rs.getString("estado"));
+                m.setFechaIngreso(rs.getDate("fechaIngreso") != null
+                        ? rs.getDate("fechaIngreso").toLocalDate()
+                        : null);
+                return m;
+            }
         }
+    } catch (SQLException e) {
+        throw new DaoException("Error al buscar mascota por ID: " + e.getMessage());
     }
-
-    if (!encontrado) {
-        throw new DaoException("Mascota con ID " + m.getIdMascota() + " no encontrado.");
+    return null;
     }
-
-    // Ahora actualizamos en la base de datos
+    
+    @Override
+    public void update(Mascota m) throws DaoException {
     String sql = "UPDATE Mascota SET nombre=?, especie=?, raza=?, sexo=?, edad=?, estado=?, fechaIngreso=? WHERE idMascota=?";
+    
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
         ps.setString(1, m.getNombre());
         ps.setString(2, m.getEspecie());
@@ -84,18 +113,25 @@ public void update(Mascota m) throws DaoException {
         ps.setString(6, m.getEstado());
         ps.setDate(7, m.getFechaIngreso() != null ? java.sql.Date.valueOf(m.getFechaIngreso()) : null);
         ps.setInt(8, m.getIdMascota());
-        ps.executeUpdate();
+
+        int filasActualizadas = ps.executeUpdate();
+
+        if (filasActualizadas == 0) {
+            throw new DaoException("No se encontró ninguna mascota con ID " + m.getIdMascota() + " para actualizar.");
+        }
     } catch (SQLException e) {
-        throw new DaoException("Error al actualizar mascota en DB: " + e.getMessage());
+        throw new DaoException("Error al actualizar mascota en DB: " + e.getMessage(), e);
     }
 }
+
+   
 
     @Override
     public void delete(int id) throws DaoException {
 
     listMascotas.removeIf(m -> m.getIdMascota() == id);
 
-    // Ahora eliminamos de la base de datos
+    // eliminamos de la base de datos
     String sql = "DELETE FROM Mascota WHERE idMascota=?";
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
         ps.setInt(1, id);
