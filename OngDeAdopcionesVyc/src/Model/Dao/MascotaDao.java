@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MascotaDao implements Dao<Mascota>{
-    private List<Mascota> listMascotas = new ArrayList<>();
     
     // conexion con base de datos
     private final Connection conn; 
@@ -22,8 +21,6 @@ public class MascotaDao implements Dao<Mascota>{
     @Override
     public void save(Mascota m) throws DaoException {
     
-    listMascotas.add(m);
-
     String sql = "INSERT INTO Mascota (nombre, especie, raza, sexo, edad, estado, fechaIngreso) VALUES (?, ?, ?, ?, ?, ?, ?)";
     try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
         ps.setString(1, m.getNombre());
@@ -129,8 +126,6 @@ public class MascotaDao implements Dao<Mascota>{
 
     @Override
     public void delete(int id) throws DaoException {
-
-    listMascotas.removeIf(m -> m.getIdMascota() == id);
 
     // eliminamos de la base de datos
     String sql = "DELETE FROM Mascota WHERE idMascota=?";
