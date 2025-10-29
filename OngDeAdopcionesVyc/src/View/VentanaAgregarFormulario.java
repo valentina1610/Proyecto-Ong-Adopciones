@@ -4,16 +4,25 @@ import Model.Entidades.Mascota;
 import Model.Entidades.Adoptante;
 import java.time.LocalDate;
 import javax.swing.table.DefaultTableModel;
+import Model.Dao.FormularioDao;
+import Model.Dao.DaoException;
+import Model.Dao.AdoptanteDao;
+import Model.Dao.MascotaDao;
+
+
 
 
 public class VentanaAgregarFormulario extends javax.swing.JFrame {
-
-    private DefaultTableModel modeloTabla;
     
+    DefaultTableModel modeloTabla;
+    FormularioDao formularioDao = new FormularioDao();
+
+
     public VentanaAgregarFormulario() {
-    initComponents();
-    modeloTabla = (DefaultTableModel) jTable1.getModel();
-}
+        initComponents();
+        modeloTabla = (DefaultTableModel) jTable1.getModel(); // 🔹 Inicializa el modelo de la tabla
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -155,23 +164,37 @@ public class VentanaAgregarFormulario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    try {
+    
+        try {
         int idAdoptante = Integer.parseInt(jTextField1.getText());
         int idMascota = Integer.parseInt(jTextField2.getText());
         LocalDate fechaAdopcion = LocalDate.parse(jTextField3.getText());
 
-        Adoptante adoptante = new Adoptante();
-        adoptante.setIdAdoptante(idAdoptante);
-        adoptante.setNombre("Nombre ejemplo"); 
+        // instancias de los dao
+        AdoptanteDao adoptanteDao = new AdoptanteDao();
+        MascotaDao mascotaDao = new MascotaDao();
 
-        Mascota mascota = new Mascota();
-        mascota.setIdMascota(idMascota);
-        mascota.setNombre("Mascota ejemplo");  
-        mascota.setEspecie("Especie ejemplo"); 
+        // verifica la existencia de Adoptante
+        Adoptante adoptante = adoptanteDao.findById(idAdoptante);
+        if (adoptante == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "El adoptante con ID " + idAdoptante + " no existe.");
+            return;
+        }
 
-        int idFormulario = modeloTabla.getRowCount() + 1; // ID automático en la tabla
-        Formulario formulario = new Formulario(idFormulario, mascota, adoptante, fechaAdopcion);
+        // verifca la existencia de Mascota
+        Mascota mascota = mascotaDao.findById(idMascota);
+        if (mascota == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "La mascota con ID " + idMascota + " no existe.");
+            return;
+        }
 
+        // crear y guardar el Formulario
+        Formulario formulario = new Formulario(0, mascota, adoptante, fechaAdopcion);
+        formularioDao.save(formulario);
+
+        // Agregar fila a la tabla
         modeloTabla.addRow(new Object[]{
             formulario.getIdFormulario(),
             adoptante.getIdAdoptante(),
@@ -182,6 +205,7 @@ public class VentanaAgregarFormulario extends javax.swing.JFrame {
             formulario.getFechaAdopcion()
         });
 
+        // Limpiar campos
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");

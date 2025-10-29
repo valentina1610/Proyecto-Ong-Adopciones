@@ -1,5 +1,12 @@
-
 package View;
+import Model.Dao.MascotaDao;
+import Model.Dao.DaoException;
+import Model.Entidades.Mascota;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+
 
 /**
  *
@@ -12,6 +19,7 @@ public class VentanaActualizarMascota extends javax.swing.JFrame {
      */
     public VentanaActualizarMascota() {
         initComponents();
+        cargarTabla();
     }
 
     /**
@@ -196,9 +204,71 @@ public class VentanaActualizarMascota extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+        // Validar datos ingresados
+        if (jTextField3.getText().isEmpty() || jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor completá todos los campos.");
+            return;
+        }
+
+        int idMascota = Integer.parseInt(jTextField3.getText());
+        String nombre = jTextField1.getText();
+        String especie = (String) jComboBox1.getSelectedItem();
+        String raza = jTextField2.getText();
+        int edad = Integer.parseInt((String) jComboBox3.getSelectedItem());
+        String sexo = (String) jComboBox4.getSelectedItem();
+
+        // Crear DAO y entidad actualizada
+        MascotaDao mascotaDao = new MascotaDao();
+        Mascota mascotaActualizada = new Mascota(idMascota, nombre, especie, raza, edad, "Disponible", sexo, LocalDate.now());
+
+        mascotaDao.update(mascotaActualizada);
+
+        JOptionPane.showMessageDialog(this, "Mascota actualizada correctamente.");
+        cargarTabla(); // Refresca la tabla
+
+        // Limpia campos
+        jTextField3.setText("");
+        jTextField1.setText("");
+        jTextField2.setText("");
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El ID y la edad deben ser números válidos.");
+    } catch (DaoException e) {
+        JOptionPane.showMessageDialog(this, "Error al actualizar: " + e.getMessage());
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cargarTabla() {
+    try {
+        MascotaDao mascotaDao = new MascotaDao();
+        List<Mascota> lista = mascotaDao.findAll();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+
+        for (Mascota m : lista) {
+            modelo.addRow(new Object[]{
+                m.getIdMascota(),
+                m.getNombre(),
+                m.getEspecie(),
+                m.getRaza(),
+                m.getEdad(),
+                m.getSexo(),
+                m.getEstado().equalsIgnoreCase("Adoptado"),
+                m.getFechaIngreso()
+            });
+        }
+
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay mascotas registradas en la base de datos.");
+        }
+
+    } catch (DaoException ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar tabla: " + ex.getMessage());
+    }
+}
+
+    
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed

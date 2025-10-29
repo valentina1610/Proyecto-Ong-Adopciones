@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MascotaDao implements Dao<Mascota>{
+    private List<Mascota> listMascotas = new ArrayList<>();
     
     // conexion con base de datos
     private final Connection conn; 

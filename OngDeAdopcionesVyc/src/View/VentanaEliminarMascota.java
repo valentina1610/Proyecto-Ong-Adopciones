@@ -16,6 +16,7 @@ public class VentanaEliminarMascota extends javax.swing.JFrame {
      */
     public VentanaEliminarMascota() {
         initComponents();
+        cargarTabla();
     }
 
     /**
@@ -113,14 +114,24 @@ public class VentanaEliminarMascota extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                                         
     try {
+        String textoId = jTextField3.getText().trim();
+        if(textoId.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingresá un ID válido.");
+            return;
+        }
+
+        int id = Integer.parseInt(textoId);
         MascotaDao mascotaDao = new MascotaDao();
-        int id = Integer.parseInt(jTextField3.getText());
         mascotaDao.delete(id);
 
         JOptionPane.showMessageDialog(this, "Mascota eliminada correctamente.");
-        cargarTabla();
+        cargarTabla(); // refresca la tabla
 
-    } catch (Exception ex) {
+        jTextField3.setText(""); // limpia campo
+
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "El ID debe ser un número.");
+    } catch (DaoException ex) {
         JOptionPane.showMessageDialog(this, "Error al eliminar: " + ex.getMessage());
     }
     }//GEN-LAST:event_jButton1ActionPerformed
