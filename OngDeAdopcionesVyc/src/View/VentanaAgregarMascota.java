@@ -1,8 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
+import Model.Dao.MascotaDao;
+import Model.Dao.DaoException;
+import Model.Entidades.Mascota;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -192,9 +195,67 @@ public class VentanaAgregarMascota extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+                                      
+    try {
+        String nombre = jTextField1.getText();
+        String especie = (String) jComboBox1.getSelectedItem();
+        String raza = jTextField2.getText();
+        int edad = Integer.parseInt((String) jComboBox3.getSelectedItem());
+        String sexo = (String) jComboBox4.getSelectedItem();
+
+        Mascota m = new Mascota();
+        m.setNombre(nombre);
+        m.setEspecie(especie);
+        m.setRaza(raza);
+        m.setEdad(edad);
+        m.setSexo(sexo);
+        m.setEstado("Disponible");
+        m.setFechaIngreso(LocalDate.now());
+
+        MascotaDao mascotaDao = new MascotaDao();
+        mascotaDao.save(m);
+
+        JOptionPane.showMessageDialog(this, "Mascota agregada correctamente.");
+        cargarTabla(); // actualiza la tabla
+
+        // Limpiar campos
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jComboBox1.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        jComboBox4.setSelectedIndex(0);
+
+    } catch (DaoException ex) {
+        JOptionPane.showMessageDialog(this, "Error al agregar mascota: " + ex.getMessage());
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cargarTabla() {
+    try {
+        MascotaDao mascotaDao = new MascotaDao();
+        List<Mascota> mascotas = mascotaDao.findAll(); 
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // limpia la tabla
+
+        for (Mascota m : mascotas) {
+            model.addRow(new Object[]{
+                m.getIdMascota(),
+                m.getNombre(),
+                m.getEspecie(),
+                m.getRaza(),
+                m.getEdad(),
+                m.getSexo(),
+                m.getEstado(),
+                m.getFechaIngreso()
+            });
+        }
+
+    } catch (DaoException ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar tabla: " + ex.getMessage());
+    }
+    }
+        
     /**
      * @param args the command line arguments
      */

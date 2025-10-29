@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package View;
 
-/**
- *
- * @author gc
- */
+package View;
+import Model.Dao.FormularioDao;
+import Model.Dao.DaoException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import Model.Entidades.Formulario;
+import java.util.List;
+
 public class VentanaEliminarFormulario extends javax.swing.JFrame {
 
     /**
@@ -117,9 +116,49 @@ public class VentanaEliminarFormulario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+        int id = Integer.parseInt(jTextField4.getText());
+        FormularioDao formularioDao = new FormularioDao();
+        formularioDao.delete(id);
+
+        JOptionPane.showMessageDialog(this, "Formulario eliminado correctamente.");
+        cargarTabla();
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.");
+    } catch (DaoException e) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar el formulario: " + e.getMessage());
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage());
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void cargarTabla() {
+    try {
+        FormularioDao formularioDao = new FormularioDao();
+        List<Formulario> formularios = formularioDao.findAll();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // limpia la tabla
+
+        for (Formulario f : formularios) {
+            Object[] row = {
+                f.getIdFormulario(),
+                f.getAdoptante().getIdAdoptante(),
+                f.getAdoptante().getNombre(),
+                f.getMascota().getIdMascota(),
+                f.getMascota().getEspecie(),
+                f.getMascota().getNombre(),
+                f.getFechaAdopcion()
+            };
+            model.addRow(row);
+        }
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar la tabla: " + ex.getMessage());
+    }
+}
+    
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed

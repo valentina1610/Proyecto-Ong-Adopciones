@@ -14,6 +14,11 @@ public class Adoptante {
         this.email = email;
         this.direccion = direccion;
     }
+    
+    public Adoptante() {
+        
+    }
+    
     // Getters y setters
     public int getIdAdoptante() {
         return idAdoptante;

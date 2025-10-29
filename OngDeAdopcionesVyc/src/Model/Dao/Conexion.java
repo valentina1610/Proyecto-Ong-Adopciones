@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Conexion {
     // Datos de conexión
-    private static final String URL = "jdbc:mariadb://localhost:3306/refugiodb";
+    private static final String URL = "jdbc:mysql://localhost:3306/refugiodb";
     private static final String USER = "root";
     private static final String PASSWORD = ""; 
     
@@ -16,12 +16,12 @@ public class Conexion {
     public static Connection getConnection() {
         try {
             if (conexion == null || conexion.isClosed()) {
-                Class.forName("org.mariadb.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection(URL, USER, PASSWORD);
                 System.out.println("✅ Conexión establecida correctamente.");
             }
         } catch (ClassNotFoundException e) {
-            System.err.println("❌ No se encontró el driver de MariaDB: " + e.getMessage());
+            System.err.println("❌ No se encontró el driver de MySQL: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("❌ Error al conectar con la base de datos: " + e.getMessage());
         }

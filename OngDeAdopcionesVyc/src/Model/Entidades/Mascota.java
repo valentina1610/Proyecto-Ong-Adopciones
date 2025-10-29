@@ -13,6 +13,9 @@ public class Mascota {
     private String estado; // disponible o adoptado
     private LocalDate fechaIngreso;
     
+    public Mascota() {
+    }
+    
     public Mascota(int idMascota, String nombre, String especie, String raza, int edad, String estado, String sexo, LocalDate fechaIngreso) {
         this.idMascota = idMascota;
         this.nombre = nombre;

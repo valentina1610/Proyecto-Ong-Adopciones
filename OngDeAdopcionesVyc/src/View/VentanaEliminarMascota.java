@@ -1,9 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
-
+import Model.Dao.MascotaDao;
+import Model.Dao.DaoException;
+import Model.Entidades.Mascota;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author gc
@@ -110,9 +111,44 @@ public class VentanaEliminarMascota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+                                        
+    try {
+        MascotaDao mascotaDao = new MascotaDao();
+        int id = Integer.parseInt(jTextField3.getText());
+        mascotaDao.delete(id);
+
+        JOptionPane.showMessageDialog(this, "Mascota eliminada correctamente.");
+        cargarTabla();
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar: " + ex.getMessage());
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+        private void cargarTabla() {
+    try {
+        MascotaDao mascotaDao = new MascotaDao();
+        List<Mascota> lista = mascotaDao.findAll();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0); // limpia la tabla
+
+        for (Mascota m : lista) {
+            modelo.addRow(new Object[]{
+                m.getIdMascota(),
+                m.getNombre(),
+                m.getEspecie(),
+                m.getRaza(),
+                m.getEdad(),
+                m.getSexo(),
+                m.getEstado().equals("Adoptado"), // true/false
+                m.getFechaIngreso()
+            });
+        }
+    } catch (DaoException ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar tabla: " + ex.getMessage());
+    }
+}
+        
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed

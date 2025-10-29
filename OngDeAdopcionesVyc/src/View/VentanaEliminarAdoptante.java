@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
+import Model.Dao.AdoptanteDao;
+import Model.Dao.DaoException;
+import Model.Entidades.Adoptante;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -106,9 +108,55 @@ public class VentanaEliminarAdoptante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgregarActionPerformed
-       
+    
+        
+        try {
+        AdoptanteDao adoptanteDao = new AdoptanteDao();
+
+        int id = Integer.parseInt(TextFieldNombre.getText().trim());
+        adoptanteDao.delete(id);
+        javax.swing.JOptionPane.showMessageDialog(this, " Adoptante eliminado correctamente.");
+
+        cargarTabla();
+        TextFieldNombre.setText("");
+
+    } catch (NumberFormatException ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, " Ingresá un ID numérico válido.");
+    } catch (Exception ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, " Error al eliminar: " + ex.getMessage());
+    }
     }//GEN-LAST:event_ButtonAgregarActionPerformed
 
+    private void cargarTabla() {
+    try {
+        // Instanciamos el DAO
+        AdoptanteDao adoptanteDao = new AdoptanteDao();
+
+        // Obtenemos todos los adoptantes
+        java.util.List<Model.Entidades.Adoptante> lista = adoptanteDao.findAll();
+
+        // Creamos el modelo de la tabla
+        javax.swing.table.DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
+        modelo.setColumnIdentifiers(new Object[]{"IDAdoptante", "Nombre", "Telefono", "Email", "Direccion"});
+
+        // Cargamos las filas
+        for (Model.Entidades.Adoptante a : lista) {
+            modelo.addRow(new Object[]{
+                a.getIdAdoptante(),
+                a.getNombre(),
+                a.getTelefono(),
+                a.getEmail(),
+                a.getDireccion()
+            });
+        }
+
+        // Asignamos el modelo a la tabla
+        TableAdoptante.setModel(modelo);
+
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error al cargar la tabla: " + e.getMessage());
+    }
+}
     /**
      * @param args the command line arguments
      */
